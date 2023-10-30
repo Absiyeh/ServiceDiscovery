@@ -24,10 +24,11 @@ namespace Sample2.ServiceDiscoveryConfig
                 Port = ServiceConfig.ServiceAddress.Port,
                 Check = new AgentCheckRegistration
                 {
-                    HTTP = ServiceConfig.ServiceDisCoveryAddress.ToString(),
-                    Notes = "Checks /hc on localhost",
+                    HTTP = ServiceConfig.HealthCheck.ToString(),
+                    Notes = "Checks /health/status on localhost",
                     Timeout = TimeSpan.FromSeconds(3),
-                    Interval = TimeSpan.FromSeconds(10)
+                    Interval = TimeSpan.FromSeconds(10),
+                    DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(10)
                 },
 
             };
