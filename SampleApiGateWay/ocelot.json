@@ -1,32 +1,43 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/hc",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7141
-        }
-      ],
-      "UpstreamPathTemplate": "/sample1/hc",
+      "ServiceName": "Sample1",
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      //"DownstreamHostAndPorts": [
+      //  {
+      //    "Host": "localhost",
+      //    "Port": 5141
+      //  }
+      //],
+      "UpstreamPathTemplate": "/sample1/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     },
     {
-      "DownstreamPathTemplate": "/hc",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7085
-        }
-      ],
-      "UpstreamPathTemplate": "/sample2/hc",
+      "ServiceName": "Sample2",
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      //"DownstreamHostAndPorts": [
+      //  {
+      //    "Host": "localhost",
+      //    "Port": 5085
+      //  }
+      //],
+      "UpstreamPathTemplate": "/sample2/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
     }
 
   ],
 
-  "BaseUrl": "https://localhost:7074"
+  "BaseUrl": "https://localhost:7074",
+  "GlobalConfiguration": {
+    "UseServiceDiscovery": true,
+    "ServiceDiscoveryProvider": {
+      "Type": "Consul",
+      "Scheme": "http",
+      "Host": "localhost",
+      "Port": 8500
+    }
+  }
 
 }

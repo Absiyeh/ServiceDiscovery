@@ -1,5 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
 
 namespace SampleApiGateWay
 {
@@ -17,7 +18,7 @@ namespace SampleApiGateWay
             builder.Services.AddSwaggerGen();
             builder.Configuration.AddJsonFile("ocelot.json", false, false);
 
-            builder.Services.AddOcelot(builder.Configuration);
+            builder.Services.AddOcelot(builder.Configuration).AddConsul();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
